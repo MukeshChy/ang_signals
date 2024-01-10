@@ -10,9 +10,12 @@ import {Component, computed, effect, Signal, signal} from '@angular/core';
 export class SignalsComponent {
   actions = signal<string[]>([]);
   counter= signal(0);
+
+  /* computed will compute isEven everytime counter value changes */
   isEven = computed(() => (this.counter() % 2) === 0);
 
   constructor() {
+    /* whenever counter value changes, code inside effect will be executed */
     effect(() => console.log(`COUNTER CHANGED TO ${this.counter()}`))
   }
 
